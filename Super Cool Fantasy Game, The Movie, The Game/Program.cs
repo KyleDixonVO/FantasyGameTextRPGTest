@@ -55,6 +55,19 @@ namespace Super_Cool_Fantasy_Game__The_Movie__The_Game
                 
             }
 
+            void castMenu()
+            {
+                Console.WriteLine("What do you wish to cast?");
+                Console.WriteLine("Spellslots: " + spellSlots);
+                Console.WriteLine("//Options In Development.");
+                Console.ReadKey();
+                            
+                spellSlots = spellSlots -1;
+                Console.ReadKey();
+                Console.WriteLine("Spellslots: " + spellSlots);
+            
+            }
+
             void Core()
             {
                 Console.WriteLine("An orc attacks!");
@@ -66,7 +79,7 @@ namespace Super_Cool_Fantasy_Game__The_Movie__The_Game
                 userInput = Console.ReadLine();
                 doAttack = attack.Equals(userInput);
                 doBlock = block.Equals(userInput);
-                
+                doCast = cast.Equals(userInput);
                 if (doAttack == true)
                 { 
                     orcHealth = orcHealth - swordDamage;
@@ -78,6 +91,11 @@ namespace Super_Cool_Fantasy_Game__The_Movie__The_Game
                     playerHealth = playerHealth - (orcDamage - shieldAbsorb);
                     Console.WriteLine("Player Health: " + playerHealth);
                 
+                }
+                
+                else if (doCast == true)
+                { 
+                    castMenu();
                 }
 
              
