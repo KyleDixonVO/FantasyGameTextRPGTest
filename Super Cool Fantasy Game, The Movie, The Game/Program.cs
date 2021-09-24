@@ -51,9 +51,14 @@ namespace Super_Cool_Fantasy_Game__The_Movie__The_Game
 
             Core();
 
+            void Core()
+            {
+                Combat();
+            }
+            
             void inputManager()
             {
-                 doAttack = attack.Equals(userInput);
+                doAttack = attack.Equals(userInput);
                 doBlock = block.Equals(userInput);
                 doCast = cast.Equals(userInput);
                 doRun = run.Equals(userInput);
@@ -123,11 +128,11 @@ namespace Super_Cool_Fantasy_Game__The_Movie__The_Game
 
             void PlayerStats()
             {
-                
+                experience
 
             }
 
-            void Core()
+            void Combat()
             {
                 Console.WriteLine("An orc attacks!");
                 Console.WriteLine("Orc Health: " + orcHealth);
