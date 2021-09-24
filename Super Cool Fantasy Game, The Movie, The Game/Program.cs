@@ -30,13 +30,21 @@ namespace Super_Cool_Fantasy_Game__The_Movie__The_Game
             swordDamage = 10.0f;
             float orcHealth;
             orcHealth = 100.0f;
+            float orcDamage;
+            orcDamage = 10.0f;
             string attack = "attack";
             string block = "block";
+            string run = "run";
+            string cast = "cast";
             string orc;
             string userInput = null;
             float experience;
+            float shieldAbsorb;
+            shieldAbsorb = 6.5f;
             bool doAttack = attack.Equals(userInput);
-          
+            bool doBlock = block.Equals(userInput);
+            bool doCast = cast.Equals(userInput);
+            bool doRun = run.Equals(userInput);
             experience = 0.0f;
 
             Core();
@@ -51,18 +59,28 @@ namespace Super_Cool_Fantasy_Game__The_Movie__The_Game
             {
                 Console.WriteLine("An orc attacks!");
                 Console.WriteLine("Orc Health: " + orcHealth);
+                Console.WriteLine("Player Health: " + playerHealth);
                 Console.WriteLine("What would you like to do?");
                 Console.WriteLine("attack / block / cast / run");
                 Console.WriteLine("(I only have attack working at the moment)");
                 userInput = Console.ReadLine();
                 doAttack = attack.Equals(userInput);
+                doBlock = block.Equals(userInput);
+                
                 if (doAttack == true)
                 { 
                     orcHealth = orcHealth - swordDamage;
                     Console.WriteLine("Orc Health: " + orcHealth);
                 }
                 
-                if ()
+               else if (doBlock == true)
+                { 
+                    playerHealth = playerHealth - (orcDamage - shieldAbsorb);
+                    Console.WriteLine("Player Health: " + playerHealth);
+                
+                }
+
+             
                 Console.ReadKey(true);
             }
             
