@@ -38,6 +38,7 @@ namespace Super_Cool_Fantasy_Game__The_Movie__The_Game
             string cast = "cast";
             string orc;
             string userInput = null;
+            string magicMissle = "Magic Missle";
             float experience;
             float shieldAbsorb;
             shieldAbsorb = 6.5f;
@@ -45,41 +46,17 @@ namespace Super_Cool_Fantasy_Game__The_Movie__The_Game
             bool doBlock = block.Equals(userInput);
             bool doCast = cast.Equals(userInput);
             bool doRun = run.Equals(userInput);
+            bool doMagicMissle = magicMissle.Equals(userInput);
             experience = 0.0f;
 
             Core();
 
             void inputManager()
             {
-
-                
-            }
-
-            void castMenu()
-            {
-                Console.WriteLine("What do you wish to cast?");
-                Console.WriteLine("Spellslots: " + spellSlots);
-                Console.WriteLine("//Options In Development.");
-                Console.ReadKey();
-                            
-                spellSlots = spellSlots -1;
-                Console.ReadKey();
-                Console.WriteLine("Spellslots: " + spellSlots);
-            
-            }
-
-            void Core()
-            {
-                Console.WriteLine("An orc attacks!");
-                Console.WriteLine("Orc Health: " + orcHealth);
-                Console.WriteLine("Player Health: " + playerHealth);
-                Console.WriteLine("What would you like to do?");
-                Console.WriteLine("attack / block / cast / run");
-                Console.WriteLine("(I only have attack working at the moment)");
-                userInput = Console.ReadLine();
-                doAttack = attack.Equals(userInput);
+                 doAttack = attack.Equals(userInput);
                 doBlock = block.Equals(userInput);
                 doCast = cast.Equals(userInput);
+                doRun = run.Equals(userInput);
                 if (doAttack == true)
                 { 
                     orcHealth = orcHealth - swordDamage;
@@ -98,7 +75,70 @@ namespace Super_Cool_Fantasy_Game__The_Movie__The_Game
                     castMenu();
                 }
 
-             
+                else if (doRun == true)
+                { 
+                    Console.WriteLine("Coward");
+                }
+                
+                else
+                {
+                    Console.WriteLine("Invalid Command");
+                    userInput = Console.ReadLine();
+                    inputManager();
+                }
+            }
+
+            void castMenu()
+            {
+                Console.WriteLine("What do you wish to cast?");
+                Console.WriteLine("Spellslots: " + spellSlots);
+                Console.WriteLine("//Options In Development.");
+                userInput = Console.ReadLine();
+               
+                spellMenu();
+            
+            }
+
+            void spellMenu()
+            {
+                doMagicMissle = magicMissle.Equals(userInput);
+                if (doMagicMissle == true)
+                {   
+                    spellSlots = spellSlots -1;
+                    Console.ReadKey();
+                    Console.WriteLine("Spellslots: " + spellSlots);
+                    orcHealth = orcHealth - 35.0f;
+                    Console.WriteLine("Orc Health: " + orcHealth);
+                    Console.ReadKey(true);    
+                }
+
+                else
+                {
+                    Console.WriteLine("Invalid Command");
+                    userInput = Console.ReadLine();
+                    
+                    spellMenu();
+                }
+            }
+
+            void PlayerStats()
+            {
+                
+
+            }
+
+            void Core()
+            {
+                Console.WriteLine("An orc attacks!");
+                Console.WriteLine("Orc Health: " + orcHealth);
+                Console.WriteLine("Player Health: " + playerHealth);
+                Console.WriteLine("What would you like to do?");
+                Console.WriteLine("attack / block / cast / run");
+                Console.WriteLine("//Some features are broken at the moment");
+                userInput = Console.ReadLine();
+                inputManager();
+
+                
                 Console.ReadKey(true);
             }
             
