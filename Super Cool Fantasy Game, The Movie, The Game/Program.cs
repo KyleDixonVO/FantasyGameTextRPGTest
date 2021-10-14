@@ -9,59 +9,69 @@ namespace Super_Cool_Fantasy_Game__The_Movie__The_Game
     class Program
     {
 
-       
+            //experience
+            static float badGuyXP = 10.0f;
+            static float koboldXP = badGuyXP / 2.0f;
+            static float goblinXP = badGuyXP * 2.0f;
+            static float orcXP = badGuyXP * 3.5f;
+            static float lichXP = badGuyXP * 10.0f;
+            static float enemiesKilled;
+            static float experience = 0.0f;
+            
+            //player resources
+            static float playerHealth = 100.0f;
+            static int lives = 1;
+            static int spellSlots = 5;
+            static float shieldAbsorb = 6.5f;
+            
+            //damage values
+            static float swordDamage = 10.0f;
+            
+            static float orcDamage = 10.0f;
+
+            //enemy resources
+            static float orcHealth = 100.0f;
+
+            //misc strings
+            static string attack = "attack";
+            static string block = "block";
+            static string run = "run";
+            static string cast = "cast";
+            static string orc;
+            static string userInput = null;
+            static string magicMissle = "magic missle";
+            static string HUD = "showHUD";
+            
+            static bool doAttack = attack.Equals(userInput);
+            static bool doBlock = block.Equals(userInput);
+            static bool doCast = cast.Equals(userInput);
+            static bool doRun = run.Equals(userInput);
+            static bool doMagicMissle = magicMissle.Equals(userInput);
+            static bool showHUD = HUD.Equals(userInput);
+
         static void Main(string[] args)
         {
+            Combat();
             
-            float badGuyXP;
-            badGuyXP = 10.0f;
-            float koboldXP = badGuyXP / 2.0f;
-            float goblinXP = badGuyXP * 2.0f;
-            float orcXP = badGuyXP * 3.5f;
-            float lichXP = badGuyXP * 10.0f;
-            float playerHealth;
-            playerHealth = 100.0f;
-            int lives;
-            lives = 1;
-            int spellSlots;
-            spellSlots = 5;
-            int enemiesKilled;
-            float swordDamage;
-            swordDamage = 10.0f;
-            float orcHealth;
-            orcHealth = 100.0f;
-            float orcDamage;
-            orcDamage = 10.0f;
-            string attack = "attack";
-            string block = "block";
-            string run = "run";
-            string cast = "cast";
-            string orc;
-            string userInput = null;
-            string magicMissle = "Magic Missle";
-            float experience;
-            float shieldAbsorb;
-            shieldAbsorb = 6.5f;
-            bool doAttack = attack.Equals(userInput);
-            bool doBlock = block.Equals(userInput);
-            bool doCast = cast.Equals(userInput);
-            bool doRun = run.Equals(userInput);
-            bool doMagicMissle = magicMissle.Equals(userInput);
-            experience = 0.0f;
-
-            Core();
-
-            void Core()
-            {
-                Combat();
-            }
             
-            void inputManager()
-            {
+            
+            
+            
+
+           
+
+            
+            
+        }
+        
+        static void inputManager()
+        {
                 doAttack = attack.Equals(userInput);
                 doBlock = block.Equals(userInput);
                 doCast = cast.Equals(userInput);
                 doRun = run.Equals(userInput);
+                showHUD = HUD.Equals(userInput);
+
                 if (doAttack == true)
                 { 
                     orcHealth = orcHealth - swordDamage;
@@ -84,17 +94,27 @@ namespace Super_Cool_Fantasy_Game__The_Movie__The_Game
                 { 
                     Console.WriteLine("Coward");
                 }
-                
+
+                else if (showHUD == true)
+                { 
+                    ShowHUD();
+                    userInput = Console.ReadLine();
+                    inputManager();      
+                }
+
                 else
                 {
                     Console.WriteLine("Invalid Command");
                     userInput = Console.ReadLine();
                     inputManager();
                 }
-            }
 
-            void castMenu()
-            {
+                userInput = Console.ReadLine();
+                inputManager();
+        }
+
+        static void castMenu()
+        {
                 Console.WriteLine("What do you wish to cast?");
                 Console.WriteLine("Spellslots: " + spellSlots);
                 Console.WriteLine("//Options In Development.");
@@ -102,10 +122,10 @@ namespace Super_Cool_Fantasy_Game__The_Movie__The_Game
                
                 spellMenu();
             
-            }
+        }
 
-            void spellMenu()
-            {
+        static void spellMenu()
+        {
                 doMagicMissle = magicMissle.Equals(userInput);
                 if (doMagicMissle == true)
                 {   
@@ -124,35 +144,41 @@ namespace Super_Cool_Fantasy_Game__The_Movie__The_Game
                     
                     spellMenu();
                 }
-            }
-
-            void PlayerStats()
-            {
-                experience
-
-            }
-
-            void Combat()
-            {
+        }
+      
+       static void Combat()
+       {
                 Console.WriteLine("An orc attacks!");
                 Console.WriteLine("Orc Health: " + orcHealth);
                 Console.WriteLine("Player Health: " + playerHealth);
                 Console.WriteLine("What would you like to do?");
                 Console.WriteLine("attack / block / cast / run");
                 Console.WriteLine("//Some features are broken at the moment");
+                if (orcHealth <= 0)
+                {
+                    
+                }
                 userInput = Console.ReadLine();
                 inputManager();
 
                 
                 Console.ReadKey(true);
-            }
-            
-        }
+       }
+       
+       static void PlayerStats()
+       {
+                experience = experience;
 
-      
+       }
 
-        
-
+       static void ShowHUD()
+       { 
+        Console.WriteLine("Player Lives: " + lives);
+        Console.WriteLine("Player Health: " + playerHealth);
+        Console.WriteLine("Spellslots: " + spellSlots);
+        Console.WriteLine("Weapon Damage: " + swordDamage);
+        Console.ReadKey(true);
+       }
     }
 
 
